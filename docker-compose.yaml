@@ -4,6 +4,8 @@ services:
       dockerfile: ./docker/app/Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - ./app:/usr/src/app
   mongo:
     image: mongo:latest
     restart: always
