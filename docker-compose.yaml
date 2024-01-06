@@ -10,10 +10,12 @@ services:
     image: mongo:latest
     restart: always
     volumes:
-      - mongodb:/data/db
+      - ./docker/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - nodejs-base-build:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123123
+      MONGO_INITDB_DATABASE: nodejs-base-build-db
     ports:
       - "27017:27017"
   mongo-express:
@@ -30,4 +32,4 @@ services:
       ME_CONFIG_MONGODB_PORT: 27017
 
 volumes:
-  mongodb:
+  nodejs-base-build:
